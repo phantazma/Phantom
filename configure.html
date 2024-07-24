@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Addon Configuration</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('background.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: "Poppins", sans-serif;
+            color: white;
+
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.5);
+            /* Slightly transparent white background */
+            backdrop-filter: blur(3px);
+            /* Apply blur effect to the background */
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            position: relative;
+        }
+
+        .logo {
+            width: 100px;
+            /* Adjust the width as needed */
+            height: auto;
+            margin-bottom: 20px;
+            /* Space between logo and the form */
+        }
+
+        .config_form {
+            position: relative;
+            margin-inline: 1.5rem;
+            background-color: hsla(0, 0%, 100%, .01);
+            border: 2px solid hsla(0, 0%, 100%, .7);
+            padding: 2.5rem 1rem;
+            color: var(--white-color);
+            border-radius: 1rem;
+            backdrop-filter: blur(16px);
+        }
+
+        @media screen and (min-width: 1476px) {
+            .config_form {
+                width: 32%;
+                padding-inline: 2.5rem;
+            }
+        }
+
+        @media screen and (min-width: 576px) {
+            .config_title {
+                margin-bottom: 2rem;
+            }
+        }
+
+        .config_title {
+            text-align: center;
+            font-size: 25px;
+            margin-bottom: 3.25rem;
+        }
+
+        .config_inputs,
+        .config_box {
+            display: grid;
+        }
+
+        .config_inputs {
+            row-gap: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .config_box {
+            grid-template-columns: 1fr max-content;
+            column-gap: .75rem;
+            align-items: center;
+            border: 2px solid hsla(0, 0%, 100%, .7);
+            padding-inline: 1.25rem;
+            border-radius: 4rem;
+        }
+
+        .config_input,
+        .config_button {
+            border: none;
+            outline: none;
+        }
+
+        .config_input {
+            width: 100%;
+            background: none;
+            color: var(--white-color);
+            padding-block: 1rem;
+        }
+
+        .config_input::placeholder {
+            color: var(--white-color);
+        }
+
+        .config_box i {
+            font-size: 1.25rem;
+        }
+
+        .config_register {
+            font-size: 10px;
+            text-align: center;
+            margin-top: -10px;
+        }
+
+        .config_register a {
+            color: var(--white-color);
+            font-weight: 500;
+        }
+
+        .config_register a:hover {
+            text-decoration: underline;
+        }
+
+        .config_button {
+            font-family: "Poppins", sans-serif !important;
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: white;
+            border-radius: 4rem;
+            color: black;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .config_check,
+        .config_check-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: -5px;
+        }
+
+        .config_check {
+            font-size: 13px;
+
+        }
+
+        .config_check-box {
+            column-gap: .5rem;
+        }
+
+        .config_check-input {
+            width: 1rem;
+            height: 1rem;
+            accent-color: var(--white-color);
+        }
+
+        .bullet {
+            font-size: 25px
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .lds-ring {
+            /* change color here */
+            color: #1c4c5b
+        }
+
+        .lds-ring,
+        .lds-ring div {
+            box-sizing: border-box;
+        }
+
+        .lds-ring {
+            display: inline-block;
+            position: relative;
+            width: 10px;
+            height: 12px;
+            margin-right: 7px;
+        }
+
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 14px;
+            border: 8px solid currentColor;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: currentColor transparent transparent transparent;
+        }
+
+        .lds-ring div:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+
+        .lds-ring div:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+
+        .lds-ring div:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="config_form">
+        <h1 class="config_title">Phantom Configuration</h1>
+        <div class="config_inputs">
+            <div class="config_check">
+                <div class="config_check-box">
+                </div>
+                <div class="config_check-box">
+                    <label for="user-check" class="login__check-label">Check All</label>
+                    <input type="checkbox" onchange="checkAll(this)" class="config_check-input" checked>
+                </div>
+            </div>
+            <div class="config_check">
+                <div class="config_check-box">
+                    <span class="bullet">•</span>
+                    <img src="/img/cinezone.png" style="width: 20px;"> <span
+                        style="font-weight: bolder;">CineZone</span>
+                    <div>( Movies & TV Shows -
+                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        <span class="down hidden"><span style="color:red">&#9660;</span>down</span>
+                        <span class="up hidden"><span style="color:green">&#9650;</span>up </span>)
+                    </div>
+                </div>
+                <div class="config_check-box">
+                    <label for="user-check" class="login__check-label" checked>Add to Stremio</label>
+                    <input type="checkbox" class="config_check-input" id="cineZone" checked>
+
+
+                </div>
+            </div>
+            <div class="config_check">
+                <div class="config_check-box">
+                    <span class="bullet">•</span>
+                    <img src="/img/pussatfilm.png" style="width: 20px;"> <span
+                        style="font-weight: bolder;">PusatFilm</span>
+                    <div>( Movies & TV Shows -
+                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        <span class="down hidden"><span style="color:red">&#9660;</span>down</span>
+                        <span class="up hidden"><span style="color:green">&#9650;</span>up </span>)
+                    </div>
+
+                </div>
+                <div class="config_check-box">
+                    <label for="user-check" class="login__check-label" checked>Add to Stremio</label>
+                    <input type="checkbox" class="config_check-input" id="pusatFilm" checked>
+                </div>
+            </div>
+            <div class="config_check">
+                <div class="config_check-box">
+                    <span class="bullet">•</span>
+                    <img src="/img/upmovies.png" style="width: 20px;"> <span
+                        style="font-weight: bolder;">UpMovies</span>
+                    <div>( Movies & TV Shows -
+                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        <span class="down hidden"><span style="color:red">&#9660;</span>down</span>
+                        <span class="up hidden"><span style="color:green">&#9650;</span>up </span>)
+                    </div>
+                </div>
+                <div class="config_check-box">
+                    <label for="user-check" class="login__check-label" checked>Add to Stremio</label>
+                    <input type="checkbox" class="config_check-input" id="upMovies" checked>
+                </div>
+            </div>
+
+
+            <div class="config_box">
+                <input id="ips" type="text" placeholder="IP list (optional)" required="" class="config_input">
+                <i class="ri-mail-fill"></i>
+            </div>
+            <div class="config_register">
+                To ensure access to streaming links, please provide a list ( separated by ";") of your devices IP
+                addresses.<br>
+                (We use these addresses to generate links that are specifically compatible with your network) .<br>
+                <a target="_blank" href="https://api.ipify.org">Check your IP adress here</a>
+            </div>
+        </div>
+
+        <button onclick="openAndCopyLink()" class="config_button">Install</button>
+        <div class="config_register">Or paste in stremio addon search bar after clicking</div>
+        </form>
+    </div>
+    <script>
+
+        const currentUrl = window.location.href;
+        const url = new URL(currentUrl);
+        const searchParams = url.searchParams;
+        const providers = [];
+
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        for (var i = 1; i < checkboxes.length; i++) {
+            providers.push(checkboxes[i].id);
+        }
+
+        fetch(`/providers-availability?providers=${encodeURIComponent(JSON.stringify(providers))}`)
+            .then(response => response.json())
+            .then(data => {
+
+                console.log(data)
+                data.forEach(item => {
+                    // Get the key and value from each object
+                    const key = Object.keys(item)[0];
+                    const value = item[key];
+
+                    console.log(key)
+                    console.log(value)
+
+
+                    const checkbox = document.getElementById(key);
+
+
+                    if (checkbox) {
+                        const parent = checkbox.parentElement;
+                        const previousSibling = parent.previousElementSibling;
+
+                        if (previousSibling) {
+                            let div1 = previousSibling.querySelector('.up');
+                            let div2 = previousSibling.querySelector('.down');
+                            let spinner = previousSibling.querySelector('.lds-ring');
+
+                            if (!value) {
+                                div1.classList.remove('hidden');
+                                div2.classList.add('hidden');
+                            } else {
+                                div1.classList.add('hidden');
+                                div2.classList.remove('hidden');
+                            }
+
+                            spinner.classList.add('hidden');
+                        }
+                    }
+
+                });
+
+            })
+            .catch(error => console.log('Error fetching config data:', error));
+
+        // Check if a parameter exists
+        if (searchParams.has('hex')) {
+            const hexValue = searchParams.get('hex');
+            const jsonObject = JSON.parse(hexToString(hexValue));
+
+            for (const key in jsonObject) {
+                if (jsonObject.hasOwnProperty(key)) {
+                    // Get checkbox element by ID
+                    const checkbox = document.getElementById(key);
+
+                    // Check checkbox if value is true
+                    if (jsonObject[key] === true && checkbox) {
+                        checkbox.checked = true;
+                    } else {
+                        checkbox.checked = false;
+                    }
+                }
+            }
+
+        } else {
+            // console.log('Parameter "param1" does not exist');
+        }
+
+        function hexToString(hex) {
+            let string = '';
+            for (let i = 0; i < hex.length; i += 2) {
+                string += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+            }
+            return string;
+        }
+
+        function stringToHex(str) {
+            let hex = '';
+            for (let i = 0; i < str.length; i++) {
+                let hexCharCode = str.charCodeAt(i).toString(16);
+                hex += hexCharCode.padStart(2, '0'); // Ensure each byte is two characters long
+            }
+            return hex;
+        }
+
+
+        function checkAll(checkbox) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+            checkboxes.forEach(function (cb) {
+                if (cb !== checkbox) {
+                    cb.checked = checkbox.checked;
+                }
+            });
+        }
+
+        function openAndCopyLink() {
+
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            var inputs = document.querySelectorAll('input[type="text"]');
+
+            var values = {};
+
+            for (var i = 1; i < checkboxes.length; i++) {
+                values[checkboxes[i].id] = checkboxes[i].checked;
+            }
+            inputs.forEach(function (input) {
+                values[input.id] = input.value;
+            });
+            var url = window.location.origin.replace(/^https?:\/\//, '');
+            var link = "stremio://" + url + "/" + stringToHex(JSON.stringify(values)) + "/manifest.json";
+
+            navigator.clipboard.writeText(link).then(function () {
+                console.log('Link copied to clipboard');
+            }, function (err) {
+                console.error('Could not copy text: ', err);
+            });
+
+            window.open(link, '_blank');
+        }
+        /* Handle form submission
+        document.getElementById('configForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const configData = {};
+            formData.forEach((value, key) => {
+                configData[key] = value;
+            });
+
+            // Send configuration data to the backend (your addon)
+            fetch('http://localhost:3000/saveConfig', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(configData),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to save configuration');
+                    }
+                    alert('Configuration saved successfully!');
+                })
+                .catch(error => {
+                    console.error('Error saving configuration:', error);
+                    alert('Failed to save configuration');
+                });
+        });*/
+    </script>
+</body>
+
+</html>
