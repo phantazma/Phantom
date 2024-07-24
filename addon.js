@@ -34,7 +34,9 @@ var respond = function (res, data) {
     res.setHeader('Content-Type', 'application/json');
     res.send(data);
 };
-
+addon.get('/', (req, res) => {
+    res.sendFile(__dirname + '/configure.html');
+});
 addon.get('/configure', (req, res) => {
     res.sendFile(__dirname + '/configure.html');
 });
