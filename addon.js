@@ -7,7 +7,7 @@ const { mainFunction,checkProviders } = require('./server');
 var providers = []
 var allProviders = [ 'cineZone', 'pusatFilm', 'upMovies' ]
 
-app.use(express.static(path.join(__dirname)));
+addon.use(express.static(path.join(__dirname)));
 
 var MANIFEST = {
     id: 'amenco.phantom',
