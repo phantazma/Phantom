@@ -26,7 +26,8 @@ async function search(params) {
 
     try {
         const content = await callHttpMethods(url, params);
-
+        console.log("here1")
+        console.log(content)
         const params2 = {
             htmlString: content,
             name: mediaName,
@@ -36,6 +37,8 @@ async function search(params) {
         };
 
         const pagResult = getMainPage(params2);
+        console.log("here2")
+        console.log(pagResult)
 
         const params3 = {
             selector: ".server"
