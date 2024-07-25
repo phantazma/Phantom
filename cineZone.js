@@ -27,7 +27,7 @@ async function search(params) {
     try {
         const content = await callHttpMethods(url, params);
         console.log("here1")
-        console.log(content)
+        console.log(content.substring(0,2000))
         const params2 = {
             htmlString: content,
             name: mediaName,
