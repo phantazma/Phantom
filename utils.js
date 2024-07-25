@@ -14,8 +14,10 @@ async function callHttpMethods(url, options) {
         console.log("response: " + response);
         return response.data
     } catch (error) {
-        return "";
         console.error('Error fetching the webpage:', error);
+        console.log('Error fetching the webpage:', error);
+        return "";
+        
     }
 }
 
