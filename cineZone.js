@@ -263,12 +263,12 @@ async function checkProvider() {
         callHttpMethods(url, options)
             .then((content) => {
                 let value = JSON.parse('{"cineZone": ' + checkCaptcha(content) + '}');
-                resolve(value);
+                resolve(content);
             })
             .catch((error) => {
                 console.log(error);
                 let value = JSON.parse('{"cineZone": false}');
-                resolve(value);
+                resolve(error);
             });
     });
 
