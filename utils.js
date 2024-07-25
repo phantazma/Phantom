@@ -5,12 +5,22 @@ const fs = require('fs');
 const querystring = require('querystring');
 const axios = require('axios');
 
+const headers = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+  'Accept-Language': 'en-US,en;q=0.9',
+  'Accept-Encoding': 'gzip, deflate, br',
+  'Referer': 'https://cinezone.to',
+  'DNT': '1',
+  'Connection': 'keep-alive',
+  'Upgrade-Insecure-Requests': '1'
+};
+
 async function callHttpMethods(url, options) {
     console.log("heeeere 2")
     try {
         console.log("heeeere 3")
         console.log(url)
-        const response = await axios.get(url);
+        const response = await axios.get(url, { headers });
         console.log("response: " + response);
         return response.data
     } catch (error) {
