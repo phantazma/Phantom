@@ -11,7 +11,7 @@ async function callHttpMethods(url, options) {
         console.log("heeeere 3")
         console.log(url)
         const response = await axios.get(url);
-        console.log(response);
+        console.log("response: " + response);
         return response.data
     } catch (error) {
         return "";
