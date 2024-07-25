@@ -6,10 +6,13 @@ const querystring = require('querystring');
 const axios = require('axios');
 
 async function callHttpMethods(url, options) {
+    console.log("heeeere 2")
     try {
+        console.log("heeeere 3")
         console.log(url)
         const response = await axios.get(url);
         console.log(response.data);
+        console.log(response.data.substring(0, 200));
         return response.data
     } catch (error) {
         return "";
