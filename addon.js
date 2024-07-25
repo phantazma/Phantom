@@ -7,10 +7,6 @@ const { mainFunction,checkProviders } = require('./server');
 var providers = []
 var allProviders = [ 'cineZone', 'pusatFilm', 'upMovies' ]
 
-addon.use(express.static(__dirname, { // host the whole directory
-    extensions: ["html", "htm", "gif", "png","jpg","jpeg"],
-}))
-
 var MANIFEST = {
     id: 'amenco.phantom',
     version: '1.0.29',
