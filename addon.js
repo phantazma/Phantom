@@ -14,6 +14,15 @@ addon.use(express.static(__dirname, { // host the whole directory
 addon.get('/cinezone.png', (req, res) => {
     res.sendFile(__dirname + '/img/cinezone.png');
 });
+addon.get('/pussatfilm.png', (req, res) => {
+    res.sendFile(__dirname + '/img/pussatfilm.png');
+});
+addon.get('/upmovies.png', (req, res) => {
+    res.sendFile(__dirname + '/img/upmovies.png');
+});
+addon.get('/background.jpeg', (req, res) => {
+    res.sendFile(__dirname + '/background.jpeg');
+});
 
 var MANIFEST = {
     id: 'amenco.phantom',
